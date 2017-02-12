@@ -15,17 +15,21 @@ import java.net.InetSocketAddress;
 public class PingPongClient{
     public static void main(String[] args)
     {
-        //if(args.length<2) // Uncomment this in case of docker
-        if(args.length<1)
-        {
-            System.out.println("Usage: PingPongClient: hostName PortNum");
-            System.exit(0);
-        }
-        //String hostName = args[0]; // Uncomment this in case of Docker simulation
-        //int portNum = Integer.parseInt(args[1]);// Uncomment this in case of Docker simulation
-        int portNum = Integer.parseInt(args[0]);// comment this in case of Docker simulation
-        //InetSocketAddress address = new InetSocketAddress(hostName,portNum); // Uncomment this in case of docker
-        InetSocketAddress address = new InetSocketAddress(portNum); // Comment this in case of docker
+//        if(args.length<2) // Uncomment this in case of docker
+//        //if(args.length<1)
+//        {
+//            System.out.println("Usage: PingPongClient: hostName PortNum");
+//            System.exit(0);
+//        }
+
+//        String hostName = args[0]; // Uncomment this in case of Docker simulation
+//        int portNum = Integer.parseInt(args[1]);// Uncomment this in case of Docker simulation
+//        //int portNum = Integer.parseInt(args[0]);// comment this in case of Docker simulation
+
+        String hostName = "pingserver";
+        int portNum = 7100;
+        InetSocketAddress address = new InetSocketAddress(hostName,portNum); // Uncomment this in case of docker
+        //InetSocketAddress address = new InetSocketAddress(portNum); // Comment this in case of docker
 
         PingPongFactoryInterface stubFactory = Stub.create(PingPongFactoryInterface.class,
         address);

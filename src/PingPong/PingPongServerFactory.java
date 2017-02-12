@@ -3,22 +3,29 @@ import rmi.*;
 
 import rmi.Skeleton;
 
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
 public class PingPongServerFactory implements PingPongFactoryInterface{
+
+
+    private static InetSocketAddress address=null;
+    private static PingPongServerFactory pingPongServerFactory=null;
     public static void main(String[] args) {
         
-        if(args.length<1){
-            System.out.print("You forgot to give the port number");
-            System.exit(0);
-        }
-        int portNum = Integer.parseInt(args[0]);
-        InetSocketAddress address = new InetSocketAddress(portNum); // Create socket only on portNum
-        PingPongServerFactory pingPongServerFactory = new PingPongServerFactory();
+//        if(args.length<2){
+//            System.out.print("You forgot to give the port number");
+//            System.exit(0);
+//        }
+        String hostName = "pingserver";
+//        int portNum = Integer.parseInt(args[1]);
+        int portNum = 7100;
+        address = new InetSocketAddress(hostName,portNum); // Create socket only on portNum
+        pingPongServerFactory = new PingPongServerFactory();
         // Now lets create a skeleton instance of the remote interface
         Skeleton<PingPongFactoryInterface> skeletonFactory = new Skeleton<PingPongFactoryInterface>(
         PingPongFactoryInterface.class,
-        pingPongServerFactory,             
+        pingPongServerFactory,
         address
         );
         try {
@@ -43,7 +50,7 @@ public class PingPongServerFactory implements PingPongFactoryInterface{
             e.printStackTrace();
         }
         try {
-            PingPongRemoteInterface stub = Stub.create(PingPongRemoteInterface.class, skeleton);
+            PingPongRemoteInterface stub = Stub.create(PingPongRemoteInterface.class,skeleton, InetAddress.getLocalHost().getHostAddress());
             return stub;
         } catch (Exception e) {
             //TODO: handle exception

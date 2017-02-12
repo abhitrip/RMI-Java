@@ -8,7 +8,7 @@ import test.*;
     Tests performed are:
     <ul>
     <li>{@link conformance.rmi.SkeletonTest}</li>
-    <li>{@link conformance.rmi.StubTest1}</li>
+    <li>{@link conformance.rmi.StubTest}</li>
     <li>{@link conformance.rmi.ConnectionTest}</li>
     <li>{@link conformance.rmi.ThreadTest}</li>
     </ul>
@@ -24,8 +24,7 @@ public class ConformanceTests
         // Create the test list, the series object, and run the test series.
         @SuppressWarnings("unchecked")
         Class<? extends Test>[]     tests =
-            new Class[] {
-            			 conformance.rmi.CallTest.class,
+            new Class[] {conformance.rmi.CallTest.class,
                          conformance.rmi.ArgumentTest.class,
                          conformance.rmi.ReturnTest.class,
                          conformance.rmi.ExceptionTest.class,
@@ -37,7 +36,6 @@ public class ConformanceTests
                          conformance.rmi.RestartTest.class,
                          conformance.rmi.NoAddressTest.class,
                          conformance.rmi.ServiceErrorTest.class,
-                         conformance.rmi.SkeletonTest.class,
                          conformance.rmi.StubTest.class,
                          conformance.rmi.EqualsTest.class,
                          conformance.rmi.HashCodeTest.class,
@@ -48,11 +46,10 @@ public class ConformanceTests
                          conformance.rmi.InheritanceTest.class,
                          conformance.rmi.SubclassTest.class,
                          conformance.rmi.SecurityTest.class,
-                         conformance.rmi.ThreadTest.class
-                         };
+                         conformance.rmi.ThreadTest.class};
 
         Series                      series = new Series(tests);
-        SeriesReport                report = series.run(300000, System.out);
+        SeriesReport                report = series.run(3, System.out);
 
         // Print the report and exit with an appropriate exit status.
         report.print(System.out);

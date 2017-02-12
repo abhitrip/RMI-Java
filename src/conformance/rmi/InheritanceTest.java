@@ -1,10 +1,8 @@
 package conformance.rmi;
 
+import test.*;
+import rmi.*;
 import java.net.InetSocketAddress;
-
-import rmi.RMIException;
-import rmi.Stub;
-import test.TestFailed;
 
 public class InheritanceTest
     extends BasicTestBase<InheritanceTest.InheritanceTestInterface>
@@ -81,6 +79,5 @@ public class InheritanceTest
 
     public interface NonRemoteDerivedInterface extends NonRemoteBaseInterface
     {
-    	
     }
 }
