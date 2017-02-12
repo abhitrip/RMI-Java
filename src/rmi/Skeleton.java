@@ -133,6 +133,8 @@ public class Skeleton<T>
      */
     protected void stopped(Throwable cause)
     {
+        if(cause!=null)
+            cause.printStackTrace();
     }
 
     /** Called when an exception occurs at the top level in the listening
